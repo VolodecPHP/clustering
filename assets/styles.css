@@ -32,14 +32,17 @@ body {
   overflow: hidden;
 }
 
-.js-plotly-plot .plotly .modebar {
-  background-color: transparent;
-}
-
 .info {
   font-weight: 700;
   margin-bottom: 10px;
   font-size: 18px;
   font-family: arial;
   color: tomato;
+}
+
+/* RESET PLOTLY STYLES */
+
+.js-plotly-plot .plotly .modebar {
+  background-color: transparent !important;
+  height: 15px;
 }
