@@ -9,6 +9,10 @@ import { kMeans } from './kMeans.js';
 import { hierarchicalClustering } from './hierarchical.js';
 import { silhouette } from './silhouette.js';
 
+Array.prototype.sum = function () {
+  return this.reduce((acc, v) => (acc += v), 0) / this.length;
+};
+
 export {
   getRandomFloat,
   getRandomColor,

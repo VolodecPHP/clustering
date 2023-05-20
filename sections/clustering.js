@@ -8,19 +8,23 @@ import {
   silhouette,
 } from '../utils/index.js';
 
-export const getClusters = (centers, R, numberOfPoints) => {
+export const getClusters = (centers, R, numberOfPoints, MOCKED_DATA) => {
   const plotId1 = getRandomId();
 
-  const knownClusters = [];
+  let knownClusters = [];
 
-  centers.forEach(() => {
-    knownClusters.push([]);
-  });
-
-  for (let i = 0; i < numberOfPoints; i++) {
-    centers.forEach((center, j) => {
-      knownClusters[j].push(randomPointInCircle(center, R));
+  if (MOCKED_DATA) {
+    knownClusters = [...MOCKED_DATA];
+  } else {
+    centers.forEach(() => {
+      knownClusters.push([]);
     });
+
+    for (let i = 0; i < numberOfPoints; i++) {
+      centers.forEach((center, j) => {
+        knownClusters[j].push(randomPointInCircle(center, R));
+      });
+    }
   }
 
   const centersString = centers
@@ -44,7 +48,7 @@ export const getClusters = (centers, R, numberOfPoints) => {
         mode: 'markers',
         type: 'scatter',
         marker: {
-          size: 8,
+          size: 5,
         },
       },
     ],
@@ -66,13 +70,19 @@ export const getClusters = (centers, R, numberOfPoints) => {
           },
         })),
       ],
+      xaxis: {
+        range: [-5.5, 5.5],
+      },
+      yaxis: {
+        range: [-5.5, 5.5],
+      },
     }
   );
 
   return knownClusters;
 };
 
-export const getKMeansClusters = (data, N) => {
+export const getKMeansClusters = (data, N, initialCentroids) => {
   const plotId1 = getRandomId();
 
   // K-means
@@ -84,7 +94,7 @@ export const getKMeansClusters = (data, N) => {
 		</div>
 	`);
 
-  const kMeansClustering = kMeans(data.flat(), N);
+  const kMeansClustering = kMeans(data.flat(), N, initialCentroids);
 
   draw(
     [
@@ -94,7 +104,7 @@ export const getKMeansClusters = (data, N) => {
         mode: 'markers',
         type: 'scatter',
         marker: {
-          size: 8,
+          size: 5,
           color: kMeansClustering.centroids[i].color,
         },
       })),
@@ -104,12 +114,20 @@ export const getKMeansClusters = (data, N) => {
         mode: 'markers',
         type: 'scatter',
         marker: {
-          size: 15,
+          size: 8,
           color: 'red',
         },
       })),
     ],
-    plotId1
+    plotId1,
+    {
+      xaxis: {
+        range: [-5.5, 5.5],
+      },
+      yaxis: {
+        range: [-5.5, 5.5],
+      },
+    }
   );
 
   return kMeansClustering;
@@ -182,7 +200,7 @@ export const dendogram = (data) => {
         mode: 'markers',
         type: 'scatter',
         marker: {
-          size: 10,
+          size: 5,
           color: 'red',
         },
       },

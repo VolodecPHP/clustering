@@ -1,12 +1,11 @@
 import { getDistance } from './getDistance.js';
 import { getRandomColor } from './getRandomColor.js';
 
-export const kMeans = (data, k) => {
-  let centroids = [];
+export const kMeans = (data, k, initialCentroids) => {
+  let centroids = [...initialCentroids];
   let clusters = [];
 
   for (let i = 0; i < k; i++) {
-    centroids.push(data[i]);
     clusters.push([]);
   }
 
