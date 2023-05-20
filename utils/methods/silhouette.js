@@ -47,8 +47,7 @@ export const silhouette = (data) => {
 
   return {
     clusters: clustersKoeficients.map((c) => c.eachToEachDistance),
-    c: clustersKoeficients.map((c) => c.ind),
-    сMin: Math.min(...clustersKoeficients.map((c) => c.ind)),
+    eachToCluster: clustersKoeficients.map((c) => c.ind),
     eachToEachAvarage: eachToEach.sum(),
     eachToClusterAvarage: eachToCluster.sum(),
   };

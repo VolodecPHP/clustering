@@ -42,18 +42,6 @@ export const kMeans = (data, k, initialCentroids) => {
       };
 
       newCentroids.push(theoreticalCentroid);
-      // let bestCurrentCentroid = null;
-      // let bestDistance = Infinity;
-      // clusters[i].forEach((point) => {
-      //   const d = getDistance(point, theoreticalCentroid);
-
-      //   if (d < bestDistance) {
-      //     bestCurrentCentroid = { ...point };
-      //     bestDistance = d;
-      //   }
-      // });
-
-      // newCentroids.push(bestCurrentCentroid);
     }
 
     let converged = true;
@@ -72,7 +60,6 @@ export const kMeans = (data, k, initialCentroids) => {
     }
     centroids = newCentroids;
 
-    // Clear clusters
     for (let i = 0; i < k; i++) {
       clusters[i] = [];
     }
