@@ -1,5 +1,5 @@
-import { getDistance } from './getDistance.js';
-import { getRandomColor } from './getRandomColor.js';
+import { getDistance } from '../getDistance.js';
+import { getRandomColor } from '../getRandomColor.js';
 
 export const kMeans = (data, k, initialCentroids) => {
   let centroids = [...initialCentroids];

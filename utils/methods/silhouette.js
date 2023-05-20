@@ -1,4 +1,4 @@
-import { getDistance } from './getDistance.js';
+import { getDistance } from '../getDistance.js';
 
 export const silhouette = (data) => {
   const getInternalDistance = (arr, p) =>

@@ -5,10 +5,10 @@ import {
   silhouetteResults,
 } from './sections/clustering.js';
 import { getDistance } from './utils/getDistance.js';
-import { MOCK_DATA_LARGE_DISPERSION } from './utils/mockDataLargeDispersion.js';
-import { MOCK_DATA_MEDIUM_DISPERSION } from './utils/mockDataMediumDispersion.js';
-import { MOCK_DATA_SMALL_DISP } from './utils/mockDataSmallDispersion.js';
-import { MOCK_DATA_TEST_CENTERS } from './utils/mockDataTestCenters.js';
+import { MOCK_DATA_LARGE_DISPERSION } from './utils/mocks/mockDataLargeDispersion.js';
+import { MOCK_DATA_MEDIUM_DISPERSION } from './utils/mocks/mockDataMediumDispersion.js';
+import { MOCK_DATA_SMALL_DISP } from './utils/mocks/mockDataSmallDispersion.js';
+import { MOCK_DATA_TEST_CENTERS } from './utils/mocks/mockDataTestCenters.js';
 
 const TEST_DATA = {
   centers: [
