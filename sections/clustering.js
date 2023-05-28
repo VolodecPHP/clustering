@@ -54,28 +54,22 @@ export const getClusters = (centers, R, numberOfPoints, MOCKED_DATA) => {
     ],
     plotId1,
     {
-      shapes: [
-        ...centers.map((center) => ({
-          type: 'circle',
-          xref: 'x',
-          yref: 'y',
-          x0: center.x - R,
-          y0: center.y - R,
-          x1: center.x + R,
-          y1: center.y + R,
-          opacity: 0.1,
-          fillcolor: center.color,
-          line: {
-            color: center.color,
-          },
-        })),
-      ],
-      xaxis: {
-        range: [-5.5, 5.5],
-      },
-      yaxis: {
-        range: [-5.5, 5.5],
-      },
+      // shapes: [
+      //   ...centers.map((center) => ({
+      //     type: 'circle',
+      //     xref: 'x',
+      //     yref: 'y',
+      //     x0: center.x - R,
+      //     y0: center.y - R,
+      //     x1: center.x + R,
+      //     y1: center.y + R,
+      //     opacity: 0.1,
+      //     fillcolor: center.color,
+      //     line: {
+      //       color: center.color,
+      //     },
+      //   })),
+      // ],
     }
   );
 
@@ -119,15 +113,15 @@ export const getKMeansClusters = (data, N, initialCentroids) => {
         },
       })),
     ],
-    plotId1,
-    {
-      xaxis: {
-        range: [-5.5, 5.5],
-      },
-      yaxis: {
-        range: [-5.5, 5.5],
-      },
-    }
+    plotId1
+    // {
+    //   xaxis: {
+    //     range: [-5.5, 5.5],
+    //   },
+    //   yaxis: {
+    //     range: [-5.5, 5.5],
+    //   },
+    // }
   );
 
   return kMeansClustering;

@@ -11,33 +11,56 @@ import { MOCK_DATA_SMALL_DISP } from './utils/mocks/mockDataSmallDispersion.js';
 import { MOCK_DATA_TEST_CENTERS } from './utils/mocks/mockDataTestCenters.js';
 
 const TEST_DATA = {
+  // centers: [
+  //   {
+  //     x: -2.5,
+  //     y: 2,
+  //   },
+  //   {
+  //     x: 0,
+  //     y: 2.5,
+  //   },
+  //   {
+  //     x: 2,
+  //     y: 4,
+  //   },
+  //   {
+  //     x: 4,
+  //     y: 4,
+  //   },
+  // ],
   centers: [
     {
       x: 0,
+      y: 0,
+    },
+    {
+      x: -2.5,
+      y: 2,
+    },
+    {
+      x: 0.5,
       y: 4,
     },
     {
-      x: 4,
-      y: 0,
+      x: 3,
+      y: 3,
     },
     {
-      x: -4,
-      y: 0,
-    },
-    {
-      x: 0,
-      y: 8,
+      x: 2,
+      y: 0.7,
     },
   ],
-  dispersion: 0.9,
-  numberOfClusters: 4,
-  numberOfPoints: 100,
+  dispersion: 0.3,
+  numberOfClusters: 5,
+  numberOfPoints: 1000,
 };
 
 const data = getClusters(
   TEST_DATA.centers,
   TEST_DATA.dispersion,
-  TEST_DATA.numberOfPoints
+  TEST_DATA.numberOfPoints,
+  MOCK_DATA_TEST_CENTERS
 );
 
 const getInitialCentroids = (data, n, method) => {
@@ -77,14 +100,42 @@ const getInitialCentroids = (data, n, method) => {
   }
 };
 
-dendogram(data);
+// dendogram(data);
 
-const kMeansResult = getKMeansClusters(
-  data,
-  i,
-  getInitialCentroids(data, i, 'k++')
-);
+for (let i = 5; i <= 6; i++) {
+  let result = {
+    min: 1,
+    max: 0,
+    lessThanTen: 0,
+  };
 
-const s = silhouetteResults(kMeansResult);
+  for (let j = 0; j < 1; j++) {
+    const kMeansResult = getKMeansClusters(
+      data,
+      i,
+      getInitialCentroids(data, i, 'k++')
+    );
 
-console.log(s);
+    const s = silhouetteResults(kMeansResult);
+
+    if (s.eachToClusterAvarage < result.min) {
+      result.min = +s.eachToEachAvarage;
+    }
+
+    if (s.eachToClusterAvarage > result.max) {
+      result.max = +s.eachToEachAvarage;
+    }
+
+    result.lessThanTen = kMeansResult.clusters.filter(
+      (arr) => arr.length <= 800
+    ).length;
+
+    console.log('N=', i);
+    console.log(s);
+  }
+
+  // console.log('N=', i);
+  // console.log(s);
+  // // console.log(...[Object.values(result).map((v) => Number(v.toFixed(3)))]);
+  // console.log('*****');
+}
